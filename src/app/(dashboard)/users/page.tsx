@@ -3,7 +3,9 @@ import HeadPage from "@/app/head";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import Textinput from "@/components/ui/Textinput";
+import UserTable from "@/components/users/UserTable";
 import { UserContext, UserProvider } from "@/contexts/UserContext";
+import { withProviders } from "@/utils/withProviders";
 import { produce } from "immer";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
@@ -45,8 +47,9 @@ const Blank = () => {
             router.push(`/users/edit/${row.id}`);
         }
     }
+
     return (
-        <UserProvider>
+        <>
             <HeadPage title="Users" />
             <Button text="New User" icon="heroicons-outline:plus" className="btn-primary btn-sm mb-3" onClick={handleNewUser} />
             <Card noborder>
@@ -59,12 +62,12 @@ const Blank = () => {
                         value={filterUser.params.keyword}
                     />
                 </div>
-                {/* {isFetching || isLoading ? '' : (
+                {isFetching || isLoading ? '' : (
                     <UserTable listUser={users} fetchUser={fetchUser} rowAction={handleRowAction} />
-                )} */}
+                )}
             </Card>
-        </UserProvider>
+        </>
     )
 }
 
-export default Blank
+export default withProviders(UserProvider)(Blank)
