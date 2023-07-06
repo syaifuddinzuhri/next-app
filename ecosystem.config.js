@@ -1,7 +1,7 @@
 module.exports = {
   apps: [{
-    name: 'nextjs',
-    script: 'yarn',
+    name: 'next-app',
+    script: 'npm',
     args: "start",
     cwd: "/var/www/next-app/",
     instances: 2,
